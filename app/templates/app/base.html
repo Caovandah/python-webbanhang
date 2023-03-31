@@ -39,6 +39,9 @@
         <script src="{%static 'app/js/all.min.js' %}"></script>
         <script src="{%static 'app/js/owl.carousel.min.js' %}"></script>
         <script src="{%static 'app/js/myscript.js' %}"></script>
+        <script type="text/javascript">
+            var user = '{{request.user}}';
+        </script>
 
         <title>Home</title>
         <meta name="description" content="" />
@@ -139,5 +142,7 @@
 
         <!-- Footer -->
         <footer class="container--fluid bg-success text-center fixed-bottom p-2 mt-5">copyright 2023</footer>
+
+        <script src="{%static 'app/js/cart.js' %}"></script>
     </body>
 </html>
