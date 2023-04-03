@@ -5,16 +5,6 @@ from django.contrib.auth.forms import UserCreationForm
 # Create your models here.
 
 
-class Customer(models.Model):
-    user = models.OneToOneField(
-        User, on_delete=models.SET_NULL, null=True, blank=False)
-    name = models.CharField(max_length=200, null=True)
-    email = models.CharField(max_length=200, null=True)
-
-    def __str__(self):
-        return self.name
-
-
 class Puoduct(models.Model):
     name = models.CharField(max_length=200, null=True)
     price = models.FloatField()
@@ -35,7 +25,7 @@ class Puoduct(models.Model):
 
 class Order(models.Model):
     customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, blank=True, null=True)
+        User, on_delete=models.SET_NULL, blank=True, null=True)
     dete_order = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=False)
     transaction_id = models.CharField(max_length=200, null=True)
@@ -72,7 +62,7 @@ class OrderItem(models.Model):
 
 class ShippingAddress(models.Model):
     customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, blank=True, null=True)
+        User, on_delete=models.SET_NULL, blank=True, null=True)
     order = models.ForeignKey(
         Order, on_delete=models.SET_NULL, blank=True, null=True)
     address = models.CharField(max_length=200, null=True)

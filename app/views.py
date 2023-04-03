@@ -11,7 +11,7 @@ from django.contrib import messages
 
 def home(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -27,7 +27,7 @@ def home(request):
 
 def cart(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -42,7 +42,7 @@ def cart(request):
 
 def checkout(request):
     if request.user.is_authenticated:
-        customer = request.user.customer
+        customer = request.user
         order, created = Order.objects.get_or_create(
             customer=customer, complete=False)
         items = order.orderitem_set.all()
@@ -59,7 +59,7 @@ def updateItem(request):
     data = json.loads(request.body)
     productId = data['productId']
     action = data['action']
-    customer = request.user.customer
+    customer = request.user
     product = Puoduct.objects.get(id=productId)
     order, created = Order.objects.get_or_create(
         customer=customer, complete=False)
@@ -82,6 +82,7 @@ def register(request):
         form = CreateUserForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('home')
     context = {'form': form}
     return render(request, 'app/register.html', context)
 
