@@ -118,22 +118,11 @@
                 </div>
 
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a
-                            class="nav-link dropdown-toggle"
-                            href="#"
-                            role="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            User1
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
-                            <li><a class="dropdown-item" href="{% url 'cart' %}">Giỏ hàng</a></li>
-                            <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
-                        </ul>
-                    </li>
+                    <div class="form-inline my-2 my-lg-0" style="display: flex">
+                        <span>Hello! {{request.user}}</span>
+                        <span><a class="nav-link" href="{% url 'logout' %}">Logout</a></span>
+                    </div>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'register' %}">Đăng ký</a>
                     </li>
